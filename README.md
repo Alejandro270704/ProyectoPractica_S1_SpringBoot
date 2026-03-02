@@ -65,7 +65,7 @@ SELECT * FROM producto;
 -- Ver ventas
 SELECT * FROM venta;
 
--- Ver detalles de venta
+-- Ver detalles de 
 SELECT * FROM detalle_venta;
 ```
 
@@ -85,5 +85,5 @@ JOIN venta v ON dv.venta_id = v.id;
 ```
 
 ---
-
+ Ruta para swagger : localhost:8080/swagger-ui/index.html
 <h3 align="center">🚀 API REST desarrollada con Spring Boot + MySQL</h3>
