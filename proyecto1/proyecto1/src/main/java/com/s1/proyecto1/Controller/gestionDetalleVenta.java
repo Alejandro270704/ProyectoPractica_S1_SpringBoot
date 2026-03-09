@@ -8,9 +8,11 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/detalleVenta")
 @RequiredArgsConstructor
+@Validated
 @Tag(name="DetalleVenta", description = "esta api procesa toda la relacion de detalles de venta")
 public class gestionDetalleVenta {
     private final DetalleVentaService DetalleVentaService;
@@ -35,7 +38,7 @@ public class gestionDetalleVenta {
             }
     )
     @Operation(summary = "guardar un detalleventa",description = "permite guardar un detalleventa añadiendo como endpoint (POST) ")
-    public ResponseEntity<DetalleVentaResponseDTO> guardar(@RequestBody DetalleVentaRequestDTO dto){
+    public ResponseEntity<DetalleVentaResponseDTO> guardar(@Valid @RequestBody DetalleVentaRequestDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(DetalleVentaService.guardarDetalle(dto));
     }
     @PutMapping("/{id}")
@@ -53,6 +56,7 @@ public class gestionDetalleVenta {
     )
     @Operation(summary = "actualizar un detalleVenta",description = "permite actualizar un detalleVenta añadiendo como endpoint (PUT)")
     public ResponseEntity<DetalleVentaResponseDTO> actualizar (
+            @Valid
             @Parameter(description = "ID de el detalleventa a actualizar ",example = "1")
             @RequestBody DetalleVentaRequestDTO dto,
             @PathVariable Long id
@@ -73,7 +77,8 @@ public class gestionDetalleVenta {
             }
     )
     @Operation(summary = "Lista todos los detalleventa",description = "permite listar todos los detalleventa añadiendo como endpoint (GET)")
-    public ResponseEntity<List<DetalleVentaResponseDTO>> ListarTodoProducto(){
+    @Valid
+    public ResponseEntity<List<DetalleVentaResponseDTO>> Listartodo(){
         return ResponseEntity.ok().body(DetalleVentaService.vertodo());
     }
     @DeleteMapping("/{id}")
@@ -91,6 +96,7 @@ public class gestionDetalleVenta {
     )
     @Operation(summary = "eliminar un detalleVenta",description = "permite eliminar un detalleVenta , añadiendo como endpoint (DELETE)")
     public ResponseEntity<Void> eliminarProducto(
+            @Valid
             @Parameter(description = "ID de el detalleventa a eliminar",example = "1")
             @PathVariable Long id){
         DetalleVentaService.eliminarDetalleventa(id);

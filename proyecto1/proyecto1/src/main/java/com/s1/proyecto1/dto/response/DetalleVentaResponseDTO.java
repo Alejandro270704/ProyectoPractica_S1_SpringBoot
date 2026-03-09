@@ -8,9 +8,9 @@ public record DetalleVentaResponseDTO(
         @Schema(description = "se obtiene el ID del detallventa")
         Long id,
         @Schema(description = "se obtiene el ID del producto")
-        Long productoId,
+        ProductoResponseDTO productoId,
         @Schema(description = "se obtiene el ID de la venta")
-        Long ventaId,
+        VentaResponseDTO ventaId,
         @Schema(description = "se obtiene el la cantidad comprada")
         Integer cantidad,
         @Schema(description = "se obtiene el subtotal de la venta")

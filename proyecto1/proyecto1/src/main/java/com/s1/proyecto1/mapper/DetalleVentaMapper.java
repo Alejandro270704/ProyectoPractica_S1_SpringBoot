@@ -15,8 +15,8 @@ public class DetalleVentaMapper {
         if (detalleVenta == null || dtoproducto == null || dtoventa==null) return null;
         return new DetalleVentaResponseDTO(
                 detalleVenta.getId(),
-                detalleVenta.getProducto().getId(),
-                detalleVenta.getVenta().getId(),
+                dtoproducto,
+                dtoventa,
                 detalleVenta.getCantidad(),
                 detalleVenta.getSubtotal()
         );
